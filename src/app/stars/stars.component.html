@@ -1,3 +1,3 @@
-<p>
-  stars works!
-</p>
+<span *ngFor="let star of stars;let i = index;" class="fa fa-star"
+[class.checked]="!star" (click)="clickStar(i)"></span>
+<span>{{rating}}</span>stars
