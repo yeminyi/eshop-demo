@@ -1,4 +1,4 @@
-<div *ngFor="let product of products" class="col-md-4 col-sm-4 col-lg-4">
+<!-- <div *ngFor="let product of products" class="col-md-4 col-sm-4 col-lg-4">
     <div class="thumbnail">
       <img [src]="imgUrl" alt="">
       <div class="caption">
@@ -12,4 +12,43 @@
           <app-stars [rating]='product.rating'></app-stars>
       </div>
     </div>
-  </div>
+  </div> -->
+  <!-- <div class="col-sm-4 d-flex pb-3"  *ngFor="let product of products" >
+      <div class="card card-block">
+          Card. I'm just a simple card-block.
+      </div>
+  </div> -->
+  <!-- <div class="col-sm-6" *ngFor="let product of products" >
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Special title treatment</h5>
+          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+      </div>
+    </div> -->
+    <div class="container">
+        <div class="row equal">
+            <div class="col-sm-4 d-flex pb-3" *ngFor="let product of products" >
+                <div class="card card-block">
+                    <img class="card-img-top" [src]="imgUrl" alt="Card image cap">
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
+                    <div class="caption">
+                        <h4 class="pull-right">
+                         Price: ${{product.price}}
+                        </h4>
+                        <h4><a href="">{{product.title}}</a></h4>
+                        <p>{{product.desc}}</p>
+                      </div>
+                      <div>
+                          <app-stars [rating]='product.rating'></app-stars>
+                      </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
