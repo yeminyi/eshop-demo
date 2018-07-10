@@ -1,5 +1,11 @@
     <div class="container">
         <div class="row equal">
+            <div class="col-md-12 input-margin">
+                 <div>
+                     <input type="text" class="form-control"
+                      placeholder="Please input the product name ...">
+                 </div>
+             </div>
             <div class="col-sm-4 d-flex pb-3" *ngFor="let product of products" >
                 <div class="card card-block">
                     <img class="card-img-top" [src]="imgUrl" alt="Card image cap">
@@ -11,7 +17,6 @@
                       <p class="card-text">
                             <app-stars [rating]='product.rating'></app-stars>
                       </p>
-                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                     </div>
                 </div>
             </div>
