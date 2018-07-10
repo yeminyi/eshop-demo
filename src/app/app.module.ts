@@ -12,6 +12,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { HomeComponent } from './home/home.component';
 import { Routes, RouterModule} from '@angular/router';
 import { ProductService } from './service/product.service';
+import { FilterPipe } from './pipe/filter.pipe';
 const routeConfig: Routes=[
   {path:'',component: HomeComponent},
   {path:'product/:productId',component:ProductDetailComponent}
@@ -27,7 +28,8 @@ const routeConfig: Routes=[
     FooterComponent,
     ProductComponent,
     ProductDetailComponent,
-    HomeComponent
+    HomeComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
