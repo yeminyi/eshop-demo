@@ -3,10 +3,10 @@
             <div class="col-md-12 input-margin">
                  <div>
                      <input type="text" class="form-control"
-                      placeholder="Please input the product name ...">
+                      placeholder="Please input the product name ..." [formControl]="titleFilter" >
                  </div>
              </div>
-            <div class="col-sm-4 d-flex pb-3" *ngFor="let product of products" >
+            <div class="col-sm-4 d-flex pb-3" *ngFor="let product of products | filter:'title':keyword" >
                 <div class="card card-block">
                     <img class="card-img-top" [src]="imgUrl" alt="Card image cap">
                     <div class="card-body">
