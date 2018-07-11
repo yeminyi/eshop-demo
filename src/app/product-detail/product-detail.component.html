@@ -13,14 +13,20 @@
 </div>
 <div class="comments">
   <div>
+        <button class="btn btn-primary" (click)="isHiddenComment=!isHiddenComment">Add A Comment</button>
+  </div>
+  <div [hidden]="isHiddenComment">
     <div>
       <app-stars [(rating)]="newRating" [readonly]="false"></app-stars>
     </div>
     <div>
       <textarea [(ngModel)]="newComment"></textarea>
     </div>
-    <div><button class="btn" (click)="addComment()"></button></div>
+    <div>
+      <button class="btn btn-primary" (click)="addComment()">Submit</button>
+    </div>
   </div>
+  <br> 
   <div class="row" *ngFor="let comment of comments" >
     <hr>
     <div class="col-md-12">

@@ -11,6 +11,7 @@ export class ProductDetailComponent implements OnInit {
   comments: Comment[];
   newRating:number=5;
   newComment:string="";
+  isHiddenComment=true;
   constructor(private routeInfo: ActivatedRoute,
               private productService: ProductService) { }
 
@@ -23,7 +24,9 @@ export class ProductDetailComponent implements OnInit {
   {
     let comment = new Comment(0,this.product.id,new Date().toISOString(),'userTest',this.newRating,this.newComment);
     this.comments.unshift(comment);
-    console.log(this.newRating);
+    this.newRating=5;
+    this.newComment=null;
+    this.isHiddenComment=true;
     
   }
 
