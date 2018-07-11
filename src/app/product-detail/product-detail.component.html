@@ -16,12 +16,14 @@
         <button class="btn btn-primary" (click)="isHiddenComment=!isHiddenComment">Add A Comment</button>
   </div>
   <div [hidden]="isHiddenComment">
+    <br>
     <div>
       <app-stars [(rating)]="newRating" [readonly]="false"></app-stars>
     </div>
     <div>
-      <textarea [(ngModel)]="newComment"></textarea>
+      <textarea [(ngModel)]="newComment" class="form-control" rows="3" ></textarea>
     </div>
+    <br>
     <div>
       <button class="btn btn-primary" (click)="addComment()">Submit</button>
     </div>
@@ -32,7 +34,7 @@
     <div class="col-md-12">
       <app-stars [rating]='comment.rating'></app-stars>
       <p>{{comment.user}}</p>
-      <span class="pull-right">{{comment.timestamp}}</span>
+      <span class="pull-right">{{comment.timestamp |   date:"dd/MM/yyyy HH:mm:ss"}}</span>
       <p></p>
       <p>{{comment.content}}</p>
     </div>
