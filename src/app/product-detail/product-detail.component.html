@@ -12,10 +12,19 @@
   </div>
 </div>
 <div class="comments">
+  <div>
+    <div>
+      <app-stars [(rating)]="newRating" [readonly]="false"></app-stars>
+    </div>
+    <div>
+      <textarea [(ngModel)]="newComment"></textarea>
+    </div>
+    <div><button class="btn" (click)="addComment()"></button></div>
+  </div>
   <div class="row" *ngFor="let comment of comments" >
     <hr>
     <div class="col-md-12">
-      <app-stars [rating]='product.rating'></app-stars>
+      <app-stars [rating]='comment.rating'></app-stars>
       <p>{{comment.user}}</p>
       <span class="pull-right">{{comment.timestamp}}</span>
       <p></p>

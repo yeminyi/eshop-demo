@@ -9,6 +9,8 @@ import { ProductService, Product, Comment } from '../service/product.service';
 export class ProductDetailComponent implements OnInit {
   product : Product;
   comments: Comment[];
+  newRating:number=5;
+  newComment:string="";
   constructor(private routeInfo: ActivatedRoute,
               private productService: ProductService) { }
 
@@ -16,6 +18,13 @@ export class ProductDetailComponent implements OnInit {
     let productId=this.routeInfo.snapshot.params["productId"];
     this.product=this.productService.getProduct(productId);
     this.comments=this.productService.getCommentForProductID(productId);
+  }
+  addComment()
+  {
+    let comment = new Comment(0,this.product.id,new Date().toISOString(),'userTest',this.newRating,this.newComment);
+    this.comments.unshift(comment);
+    console.log(this.newRating);
+    
   }
 
 }
