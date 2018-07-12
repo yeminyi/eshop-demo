@@ -23,6 +23,9 @@ export class ProductService {
    
     ];
     constructor() { }
+    getAllCategories() :string[]{
+      return["Computers","Tablets","Book","Phones"];
+    }
     getProducts(): Product[] {
       return this.products;
     }
