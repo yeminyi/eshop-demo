@@ -27,7 +27,7 @@
        {{selectCategory}}
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <button class="dropdown-item" *ngFor="let category of categories" (click)="selectBtn(category)">{{category}}</button>
+        <button  type="button" class="dropdown-item" *ngFor="let category of categories" (click)="selectBtn(category)">{{category}}</button>
       </div>
     </div>
 
