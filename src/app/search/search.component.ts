@@ -13,12 +13,15 @@ export class SearchComponent implements OnInit {
   formModel: FormGroup;
   categories:string[];
   selectCategory="All Category";
-  constructor(private productService:ProductService) {
-    let fb =new FormBuilder();
-    this.formModel=fb.group({   
+  submitted = false;
+ 
+  constructor(private productService:ProductService,private formBuilder: FormBuilder) {
+    
+    this.formModel=this.formBuilder.group({   
       title:['',Validators.minLength(3)],
       price:[null,this.positiveNumberValidator],
-      category:['-1']
+      category:['-1'],
+      password: ['', [Validators.required, Validators.minLength(6)]]
     });
    }
 
@@ -26,7 +29,14 @@ export class SearchComponent implements OnInit {
     this.categories=this.productService.getAllCategories();
     this.categories.unshift(this.selectCategory);
   }
+  get name() { return this.formModel.get('name'); }
+  get f()
+  {
+    return this.formModel.controls;
+  }
   positiveNumberValidator(control:FormControl):any{
+    console.log(control.value);
+    
     if (!control.value){
       return null;
     }
@@ -40,14 +50,20 @@ export class SearchComponent implements OnInit {
     }
   }
   onSearch(){
-    if(this.formModel.valid){
+
+    this.submitted = true;
+
+    // stop here if form is invalid
+    if (this.formModel.invalid) {
       console.log(this.formModel.value);
-      
+        return;
     }
+    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.formModel.value))
   }
   selectBtn(category){
     console.log(category);
     this.selectCategory=category;
 
   }
+
 }

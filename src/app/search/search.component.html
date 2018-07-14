@@ -1,13 +1,19 @@
-<form [formGroup]="formModel" (ngSubmit)="onSearch()" novalidate>
-  <div class="form-group" [class.has-error]="formModel.hasError('minlength','title')">
+<form [formGroup]="formModel" (ngSubmit)="onSearch()" >
+  <div class="form-group">
     <label for="productTitle">Product Name</label>
-    <input type="text" formControlName="title" id="productTitle" placeholder="Product Name" class="form-control">
-    <span class="help-block" [class.hidden]="!formModel.hasError('minlength','title')">Search box must contain at least three letters </span>
+    <input type="text" formControlName="title" id="title" placeholder="Product Name" class="form-control" [ngClass]="{ 'is-invalid': submitted &&  f.title.errors }">
+    <!-- <span class="help-block" [class.hidden]="!formModel.hasError('minlength','title')">At least three letters </span> -->
+    <div *ngIf="f.title.errors" class="invalid-feedback">
+      <div *ngIf="f.title.errors.minlength">At least three letters </div>
+    </div>
   </div>
-  <div class="form-group" [class.has-error]="formModel.hasError('positiveNumber','price')">
+  <div class="form-group" >
       <label for="productPrice">Product Price</label>
-      <input type="text" id="productPrice" placeholder="Product Price" class="form-control">
-      <span class="help-block" [class.hidden]="!formModel.hasError('positiveNumber','price')">Price must be positive </span>
+      <input type="text" id="productPrice" formControlName="price" placeholder="Product Price" class="form-control" [ngClass]="{ 'is-invalid': submitted &&  f.price.errors }">
+      <!-- <span class="help-block" [class.hidden]="!formModel.hasError('positiveNumber','price')">Price must be positive </span> -->
+      <div *ngIf="f.price.errors" class="invalid-feedback">
+        <div *ngIf="f.price.errors">Price must be positive numbers </div>
+      </div>
   </div>
   <div class="form-group">
     <label for="productCategory">Product Category</label>
