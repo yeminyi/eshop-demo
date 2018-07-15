@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { retry } from 'rxjs/operators';
 import { ProductService } from '../service/product.service';
 
 @Component({
@@ -60,7 +59,7 @@ export class SearchComponent implements OnInit {
       console.log(this.formModel.value);
         return;
     }
-    alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.formModel.value))
+    // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.formModel.value))
   }
   selectBtn(category){
     // console.log(category);

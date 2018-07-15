@@ -1,39 +1,54 @@
 import { Injectable } from '@angular/core';
+import { Observable , of} from 'rxjs'
+import { HttpClient } from '@angular/common/http';
+import { catchError, map, tap } from 'rxjs/operators';
 
+import 'rxjs/add/operator/map';
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-
-    private imgUrl='http://placehold.it/320X150';
-    private products : Product[]=[
-      new Product(1,"Demo1",1.99,3.5,"This is the first Demo",["Computers","Tablets"]),
-      new Product(2,"Demo2",2.99,2.5,"This is the second Demo",["TVs"]),
-      new Product(3,"Demo3",3.99,4.5,"This is the third Demo",["Phones"]),
-      new Product(4,"Demo4",4.99,1.5,"This is the fourth Demo",["Phones"]),
-      new Product(5,"Demo5",5.99,3.5,"This is the fifth Demo",["Computers","Tablets"]),
-      new Product(6,"Demo6",6.99,2.5,"This is the sixth Demo",["Book"]),
-    ];
-    private comments : Comment[]=[
-      new Comment(1,1,"2018-02-03 22:12:12","Tom",3,"It is very good"),
-      new Comment(2,1,"2018-02-03 12:02:12","Jerry",3,"It is good"),
-      new Comment(3,2,"2018-02-03 08:12:12","Sam",2,"It is not bad"),
-      new Comment(4,2,"2018-02-03 07:12:13","Bruce",1,"It is bad"),
-      new Comment(5,2,"2018-02-03 19:12:12","Harry",2,"It is so so"),
-   
-    ];
-    constructor() { }
+    constructor(private http:HttpClient) { }
     getAllCategories() :string[]{
       return["Computers","Tablets","Book","Phones"];
     }
-    getProducts(): Product[] {
-      return this.products;
+    getProducts(): Observable<Product[]> {
+      // return this.http.get("/api/products").map(res=>res.json());
+      return this.http.get<Product[]>("/api/products")
+        .pipe(
+          catchError(this.handleError('getProducts', []))
+        );
     }
-    getProduct(id:number) :Product {
-      return this.products.find((product)=>product.id==id);
+    
+    /**TODO: GET product by id. Will 404 if id not found */
+    getProduct(id:number) :Observable<Product> {
+      // return this.products.find((product)=>product.id==id);
+      const url = `${"/api/product"}/${id}`;
+      return this.http.get<Product>(url).pipe(
+        
+        catchError(this.handleError<Product>(`getProduct id=${id}`))
+      );
     }
-    getCommentForProductID(id:number) :Comment[] {
-      return this.comments.filter((comment: Comment)=>comment.productId==id);
+    getCommentForProductID(id:number) :Observable<Comment[]> {
+      // return this.comments.filter((comment: Comment)=>comment.productId==id);
+      return this.http.get<Comment[]>("/api/product/"+id+"comments")
+        .pipe(
+          catchError(this.handleError('getCommentForProductID', []))
+        );
+    }
+    
+    /**
+     * Handle Http operation that failed.
+     * Let the app continue.
+     * @param operation - name of the operation that failed
+     * @param result - optional value to return as the observable result
+     */
+    private handleError<T> (operation = 'operation', result?: T) {
+      return (error: any): Observable<T> => {
+
+        // Let the app keep running by returning an empty result.
+        return of(result as T);
+      };
     }
 }
 export class Product{
