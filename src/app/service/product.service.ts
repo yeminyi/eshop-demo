@@ -1,13 +1,13 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { Observable , of} from 'rxjs'
-import { HttpClient } from '@angular/common/http';
+import { HttpClient , HttpParams} from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import 'rxjs/add/operator/map';
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
+    searchEvent:EventEmitter<ProductSearchParams> =new EventEmitter();
     constructor(private http:HttpClient) { }
     getAllCategories() :string[]{
       return["Computers","Tablets","Book","Phones"];
@@ -31,12 +31,29 @@ export class ProductService {
     }
     getCommentForProductID(id:number) :Observable<Comment[]> {
       // return this.comments.filter((comment: Comment)=>comment.productId==id);
-      return this.http.get<Comment[]>("/api/product/"+id+"comments")
+      return this.http.get<Comment[]>("/api/product/"+id+"/comments")
         .pipe(
           catchError(this.handleError('getCommentForProductID', []))
         );
     }
-    
+    search(params: ProductSearchParams): Observable<Product[]> {
+      let search = new HttpParams();
+      search = this.encodeParams(params);
+      return this.http.get<Product[]>("/api/products",{params:search})
+        .pipe(
+          catchError(this.handleError('getProducts', []))
+        );
+    }
+    private encodeParams(params: ProductSearchParams){
+      return Object.keys(params)
+        .filter(key=>params[key])
+        .reduce((sum:HttpParams,key:string)=>{
+     // pls be careful here, because HttpParams is immutable, when you use append() it returns a new instance of HttpParams
+     // if use URLSearchParams here //* sum.append(key,params[key]);*// 
+        sum=sum.append(key,params[key]);
+        return sum;
+        },new HttpParams());
+    }
     /**
      * Handle Http operation that failed.
      * Let the app continue.
@@ -50,6 +67,14 @@ export class ProductService {
         return of(result as T);
       };
     }
+}
+
+export class ProductSearchParams{
+  constructor(
+    public title: string,
+    public price: number,
+    public category:string
+  ){}
 }
 export class Product{
   constructor(

@@ -60,6 +60,8 @@ export class SearchComponent implements OnInit {
         return;
     }
     // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.formModel.value))
+    console.log(this.formModel.value);
+    this.productService.searchEvent.emit(this.formModel.value);
   }
   selectBtn(category){
     // console.log(category);

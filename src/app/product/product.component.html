@@ -1,11 +1,11 @@
     <div class="container">
         <div class="row equal">
-            <div class="col-md-12 input-margin">
+            <!-- <div class="col-md-12 input-margin">
                  <div>
                      <input type="text" class="form-control"
                       placeholder="Please input the product name ..." [formControl]="titleFilter" >
                  </div>
-             </div>
+             </div> -->
             <div class="col-sm-4 d-flex pb-3" *ngFor="let product of products |async" >
                 <div class="card card-block">
                     <img class="card-img-top" [src]="imgUrl" alt="Card image cap">
@@ -13,6 +13,7 @@
                       <h5 class="card-title">
                          <a [routerLink]="['/product',product.id]">{{product.title}}</a>
                       </h5>
+                      <p class="card-text ">${{product.price}}</p>
                       <p class="card-text">{{product.desc}}
                       <p class="card-text">
                             <app-stars [rating]='product.rating'></app-stars>

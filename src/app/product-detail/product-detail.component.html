@@ -2,11 +2,14 @@
   <img class="card-img-top" src="http://placehold.it/820X230" alt="Card image cap">
   <div class="card-body">
     <h5 class="card-title">
-       <a [routerLink]="['/product',product.id]">{{product.title}}</a>
+       {{product?.title}}
     </h5>
-    <p class="card-text">{{product.desc}}
+    <h5 class="card-title pull-right">
+      ${{product?.price}}
+    </h5>   
+    <p class="card-text">{{product?.desc}}
     <p class="card-text">
-          <app-stars [rating]='product.rating'></app-stars>
+          <app-stars [rating]='product?.rating'></app-stars>
     </p>
     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
   </div>

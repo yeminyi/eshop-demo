@@ -14,7 +14,7 @@ import { Routes, RouterModule} from '@angular/router';
 import { ProductService } from './service/product.service';
 import { FilterPipe } from './pipe/filter.pipe';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
-
+import { HttpClientModule } from '@angular/common/http'; 
 const routeConfig: Routes=[
   {path:'',component: HomeComponent},
   {path:'product/:productId',component:ProductDetailComponent}
@@ -38,6 +38,7 @@ const routeConfig: Routes=[
     RouterModule.forRoot(routeConfig),
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]
