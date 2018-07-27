@@ -11,7 +11,6 @@ export class SearchComponent implements OnInit {
 
   formModel: FormGroup;
   categories:string[];
-  selectCategory="All Category";
   submitted = false;
  
   constructor(private productService:ProductService,private formBuilder: FormBuilder) {
@@ -26,7 +25,6 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     this.categories=this.productService.getAllCategories();
-    this.categories.unshift(this.selectCategory);
   }
 
   get f()
@@ -63,10 +61,6 @@ export class SearchComponent implements OnInit {
     console.log(this.formModel.value);
     this.productService.searchEvent.emit(this.formModel.value);
   }
-  selectBtn(category){
-    // console.log(category);
-    this.selectCategory=category;
 
-  }
 
 }

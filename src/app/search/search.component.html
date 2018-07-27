@@ -17,10 +17,12 @@
   </div>
   <div class="form-group">
     <label for="productCategory">Product Category</label>
-    <!-- <select formControlName="category" name="productCategory" class="form-control" id="productCategory"></select>
-    <option value="-1">All Category</option>
-    <option *ngFor="let category of categories"  [value]="category">{{category}}</option> -->
-    <div class="dropdown">
+    <select formControlName="category" name="productCategory" class="form-control" id="productCategory">
+      <option value="-1">All Category</option>
+      <option *ngFor="let category of categories"  [value]="category">{{category}}</option> 
+   </select>
+   
+    <!-- <div class="dropdown">
       <button class="btn btn-secondary dropdown-toggle form-control" type="button" 
       name="productCategory"  id="productCategory"
        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -29,7 +31,7 @@
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <button  type="button" class="dropdown-item" *ngFor="let category of categories" (click)="selectBtn(category)">{{category}}</button>
       </div>
-    </div>
+    </div> -->
 
   </div>
   <div class="form-group">
