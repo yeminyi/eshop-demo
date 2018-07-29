@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import { ProductService, Product, Comment } from '../service/product.service';
 import { WebSocketService } from '../service/web-socket.service';
+import { Subscription } from '../../../node_modules/rxjs';
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
@@ -15,6 +16,7 @@ export class ProductDetailComponent implements OnInit {
   isHiddenComment=true;
   isWatched:boolean=false;
   currentBid:number;
+  subscrption:Subscription;
   constructor(private routeInfo: ActivatedRoute,
               private productService: ProductService,
               private wsService:WebSocketService) { }
@@ -44,13 +46,21 @@ export class ProductDetailComponent implements OnInit {
     
   }
   watchProduct(){
-    this.isWatched=!this.isWatched;
-    this.wsService.createObservableSocket("ws://localhost:8085",this.product.id)
-    .subscribe(
-      products=>{
-        let product =JSON.parse(products).find(p=>p.productId===this.product.id)
-        this.currentBid=product.bid;
-      }
-    ) ;
+    if(this.subscrption){
+      this.subscrption.unsubscribe();
+      this.isWatched=false;
+      this.subscrption=null;
+    }
+    else{
+       this.isWatched=true;
+       this.subscrption= this.wsService.createObservableSocket("ws://localhost:8085",this.product.id)
+       .subscribe(
+         products=>{
+           let product =JSON.parse(products).find(p=>p.productId===this.product.id)
+           this.currentBid=product.bid;
+         }
+       ) ;
+    }
+   
   }
 }
