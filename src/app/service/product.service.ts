@@ -9,11 +9,12 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class ProductService {
     searchEvent:EventEmitter<ProductSearchParams> =new EventEmitter();
     constructor(private http:HttpClient) { }
+
     getAllCategories() :string[]{
       return["Computers","Tablets","Book","Phones"];
     }
+
     getProducts(): Observable<Product[]> {
-      // return this.http.get("/api/products").map(res=>res.json());
       return this.http.get<Product[]>("/api/products")
         .pipe(
           catchError(this.handleError('getProducts', []))
@@ -22,20 +23,20 @@ export class ProductService {
     
     /**TODO: GET product by id. Will 404 if id not found */
     getProduct(id:number) :Observable<Product> {
-      // return this.products.find((product)=>product.id==id);
       const url = `${"/api/product"}/${id}`;
       return this.http.get<Product>(url).pipe(
         
         catchError(this.handleError<Product>(`getProduct id=${id}`))
       );
     }
+
     getCommentForProductID(id:number) :Observable<Comment[]> {
-      // return this.comments.filter((comment: Comment)=>comment.productId==id);
       return this.http.get<Comment[]>("/api/product/"+id+"/comments")
         .pipe(
           catchError(this.handleError('getCommentForProductID', []))
         );
     }
+
     search(params: ProductSearchParams): Observable<Product[]> {
       let search = new HttpParams();
       search = this.encodeParams(params);
@@ -44,6 +45,7 @@ export class ProductService {
           catchError(this.handleError('getProducts', []))
         );
     }
+    
     private encodeParams(params: ProductSearchParams){
       return Object.keys(params)
         .filter(key=>params[key])

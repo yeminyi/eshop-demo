@@ -1,0 +1,19 @@
+[{
+    "id": "1",
+    "title": "title1",
+    "price": 33,
+    "rating": 33,
+    "desc": "This is the first Demo",
+    "categories":["Computers","Tablets"]
+
+},
+{
+    "id": "2",
+    "title": "title2",
+    "price": 333,
+    "rating": 233,
+    "desc": "This is the second Demo",
+    "categories":["Computers","Tablets"]
+
+}
+]
