@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <span *ngFor="let star of stars;let i = index;" class="fa fa-star"
 [class.checked]="!star" (click)="clickStar(i)"></span>
 <span> {{rating|number:'1.0-2'}} stars</span>
