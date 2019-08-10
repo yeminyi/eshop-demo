@@ -1,11 +1,5 @@
-    <div class="container">
+    <!-- <div class="container">
         <div class="row equal">
-            <!-- <div class="col-md-12 input-margin">
-                 <div>
-                     <input type="text" class="form-control"
-                      placeholder="Please input the product name ..." [formControl]="titleFilter" >
-                 </div>
-             </div> -->
             <div class="col-sm-4 d-flex pb-3" *ngFor="let product of products |async" >
                 <div class="card card-block">
                     <img class="card-img-top" [src]="imgUrl" alt="Card image cap">
@@ -23,4 +17,47 @@
             </div>
             
         </div>
-    </div>
+    </div> -->
+    <div class="row mb-5">
+        <!-- Grid column -->
+        <div class="col-lg-4 col-md-12 mb-lg-0 mb-4 pb-3" *ngFor="let product of products |async" >
+          <!-- Card -->
+          <div class="card card-cascade wider card-ecommerce">
+            <!-- Card image -->
+            <div class="view view-cascade overlay">
+              <img [src]='product.imgurl' class="card-img-top" alt="sample photo">
+              <a [routerLink]="['/product',product.id]">
+                <div class="mask rgba-white-slight waves-effect waves-light"></div>
+              </a>
+            </div>
+            <!-- Card image -->
+            <!-- Card content -->
+            <div class="card-body card-body-cascade text-center">
+              <!-- Category & Title -->
+              <a [routerLink]="['/product',product.id]" class="text-muted">
+                <h5>{{product.categories}}</h5>
+              </a>
+              <h4 class="card-title">
+                <strong>
+                    <a [routerLink]="['/product',product.id]">{{product.title}}</a>
+                </strong>
+              </h4>
+              <!-- Description -->
+              <p class="card-text">
+                    <app-stars [rating]='product.rating'></app-stars>
+              </p>
+              <p class="card-text">{{product.desc}}</p>
+              <!-- Card footer -->
+              <div class="card-footer px-1">
+                <span class="float-left font-weight-bold">
+                  <strong>{{product.price}}$</strong>
+                </span>
+                
+              </div>
+            </div>
+            <!-- Card content -->
+          </div>
+          <!-- Card -->
+        </div>
+        <!-- Grid column -->
+      </div>

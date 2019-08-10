@@ -9,7 +9,6 @@ import { Observable , of} from 'rxjs'
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-  private imgUrl='http://placehold.it/320X150';
   private products :Observable<Product[]>;
   // private keyword: string;
   // private titleFilter: FormControl= new FormControl();

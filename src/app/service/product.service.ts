@@ -11,7 +11,7 @@ export class ProductService {
     constructor(private http:HttpClient) { }
 
     getAllCategories() :string[]{
-      return["Computers","Tablets","Book","Phones"];
+      return["Computers","Tablets","Cameras","Phones"];
     }
 
     getProducts(): Observable<Product[]> {
