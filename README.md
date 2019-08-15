@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Using Angular 8 , boostrap 4 for Front End
 
-This is the [Demo](https://eshopserver.glitch.me/)
+This is the [Demo](https://eshopdemo2019.firebaseapp.com)
 
 Backend Code [Here](https://github.com/yeminyi/EshopServer/)  <https://github.com/yeminyi/EshopServer/>
 
