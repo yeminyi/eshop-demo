@@ -1,18 +1,4 @@
-// import { Component, OnInit } from '@angular/core';
 
-// @Component({
-//   selector: 'app-starts-rating',
-//   templateUrl: './starts-rating.component.html',
-//   styleUrls: ['./starts-rating.component.css']
-// })
-// export class StartsRatingComponent implements OnInit {
-
-//   constructor() { }
-
-//   ngOnInit() {
-//   }
-
-// }
 import {
   Component,
   ChangeDetectionStrategy,
@@ -71,17 +57,6 @@ const NGB_RATING_VALUE_ACCESSOR = {
     '(mouseleave)': 'reset()'
   },
   templateUrl: './stars-rating.component.html',
-  //   styleUrls: ['./starts-rating.component.css']
-  // template: `
-  //   <ng-template #t let-fill="fill">{{ fill === 100 ? '&#9733;' : '&#9734;' }}</ng-template>
-  //   <ng-template ngFor [ngForOf]="contexts" let-index="index">
-  //     <span class="sr-only">({{ index < nextRate ? '*' : ' ' }})</span>
-  //     <span (mouseenter)="enter(index + 1)" (click)="handleClick(index + 1)" [style.cursor]="readonly || disabled ? 'default' : 'pointer'">
-  //       <ng-template [ngTemplateOutlet]="starTemplate || starTemplateFromContent || t" [ngTemplateOutletContext]="contexts[index]">
-  //       </ng-template>
-  //     </span>
-  //   </ng-template>
-  // `,
   providers: [NGB_RATING_VALUE_ACCESSOR]
 })
 export class StarsRatingComponent implements ControlValueAccessor,
