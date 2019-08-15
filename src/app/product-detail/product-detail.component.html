@@ -9,7 +9,7 @@
     </h5>   
     <p class="card-text">{{product?.desc}}
     <p class="card-text">
-          <app-stars [rating]='product?.rating'></app-stars>
+          <app-stars-rating  [rate]='product?.rating' [readonly]="true"></app-stars-rating>
     </p>
     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
   </div>
@@ -31,7 +31,7 @@
   <div [hidden]="isHiddenComment">
     <br>
     <div>
-      <app-stars [(rating)]="newRating" [readonly]="false"></app-stars>
+      <app-stars-rating  [(rate)]="newRating" [readonly]="false"></app-stars-rating>
     </div>
     <div>
       <textarea [(ngModel)]="newComment" class="form-control" rows="3" ></textarea>
@@ -45,7 +45,7 @@
   <div class="row" *ngFor="let comment of comments" >
     <hr>
     <div class="col-md-12">
-      <app-stars [rating]='comment.rating'></app-stars>
+      <app-stars-rating [(rate)]='comment.rating'  [readonly]="true"></app-stars-rating>
       <p>{{comment.user}}</p>
       <span class="pull-right">{{comment.timestamp |   date:"dd/MM/yyyy HH:mm:ss"}}</span>
       <p></p>

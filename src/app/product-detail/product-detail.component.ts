@@ -14,6 +14,7 @@ export class ProductDetailComponent implements OnInit {
   newRating:number=5;
   newComment:string="";
   isHiddenComment=true;
+  
   // isWatched:boolean=false;
   // currentBid:number;
   // subscrption:Subscription;
@@ -41,7 +42,7 @@ export class ProductDetailComponent implements OnInit {
     this.comments.unshift(comment);
     let sum=this.comments.reduce((sum,comment)=>sum+comment.rating,0);
     this.product.rating=sum/this.comments.length;
-    this.newRating=5;
+     
     this.newComment=null;
     this.isHiddenComment=true;
     

@@ -44,7 +44,7 @@
               </h4>
               <!-- Description -->
               <p class="card-text">
-                    <app-stars [rating]='product.rating'></app-stars>
+                    <app-stars-rating [rate]='product.rating' [readonly]="true"></app-stars-rating>
               </p>
               <p class="card-text">{{product.desc}}</p>
               <!-- Card footer -->

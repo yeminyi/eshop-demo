@@ -1,8 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
-import { StarsComponent } from './stars/stars.component';
+import { StarsRatingComponent } from "./stars-rating/stars-rating.component";
 import { NavbarComponent } from './navbar/navbar.component';
 import { SearchComponent } from './search/search.component';
 import { CarouselComponent } from './carousel/carousel.component';
@@ -24,7 +23,6 @@ const routeConfig: Routes=[
 @NgModule({
   declarations: [
     AppComponent,
-    StarsComponent,
     NavbarComponent,
     SearchComponent,
     CarouselComponent,
@@ -32,7 +30,8 @@ const routeConfig: Routes=[
     ProductComponent,
     ProductDetailComponent,
     HomeComponent,
-    FilterPipe
+    FilterPipe,
+    StarsRatingComponent
   ],
   imports: [
     BrowserModule,
