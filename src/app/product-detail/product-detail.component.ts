@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import { ProductService, Product, Comment } from '../service/product.service';
-import { WebSocketService } from '../service/web-socket.service';
-import { Subscription } from '../../../node_modules/rxjs';
+// import { WebSocketService } from '../service/web-socket.service';
+// import { Subscription } from '../../../node_modules/rxjs';
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
@@ -14,19 +14,20 @@ export class ProductDetailComponent implements OnInit {
   newRating:number=5;
   newComment:string="";
   isHiddenComment=true;
-  isWatched:boolean=false;
-  currentBid:number;
-  subscrption:Subscription;
+  // isWatched:boolean=false;
+  // currentBid:number;
+  // subscrption:Subscription;
   constructor(private routeInfo: ActivatedRoute,
               private productService: ProductService,
-              private wsService:WebSocketService) { }
+              // private wsService:WebSocketService
+              ) { }
 
   ngOnInit() {
     let productId=this.routeInfo.snapshot.params["productId"];
     this.productService.getProduct(productId).subscribe(
       product =>{
         this.product=product;
-        this.currentBid=product.price;
+        // this.currentBid=product.price;
       }
      
     );
@@ -45,22 +46,22 @@ export class ProductDetailComponent implements OnInit {
     this.isHiddenComment=true;
     
   }
-  watchProduct(){
-    if(this.subscrption){
-      this.subscrption.unsubscribe();
-      this.isWatched=false;
-      this.subscrption=null;
-    }
-    else{
-       this.isWatched=true;
-       this.subscrption= this.wsService.createObservableSocket("ws://localhost:8085",this.product.id)
-       .subscribe(
-         products=>{
-           let product =JSON.parse(products).find(p=>p.productId===this.product.id)
-           this.currentBid=product.bid;
-         }
-       ) ;
-    }
+  // watchProduct(){
+  //   if(this.subscrption){
+  //     this.subscrption.unsubscribe();
+  //     this.isWatched=false;
+  //     this.subscrption=null;
+  //   }
+  //   else{
+  //      this.isWatched=true;
+  //      this.subscrption= this.wsService.createObservableSocket("ws://localhost:8085",this.product.id)
+  //      .subscribe(
+  //        products=>{
+  //          let product =JSON.parse(products).find(p=>p.productId===this.product.id)
+  //          this.currentBid=product.bid;
+  //        }
+  //      ) ;
+  //   }
    
-  }
+  // }
 }
