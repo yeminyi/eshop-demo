@@ -1,7 +1,5 @@
 # Eshop Demo
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
-
 Using Angular 8 , boostrap 4 for Front End
 
 This is the [Demo](https://eshopdemo2019.firebaseapp.com)
